@@ -1,0 +1,57 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class JavaTest {
+    public static int getIntInput(Scanner sc, String prompt) {
+        while (true) {
+            try {
+                System.out.print(prompt);
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("ERROR! Please enter a valid integer.");
+                sc.next(); 
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        int num1, num2;
+        System.out.println("1.add\n2.sub\n3.mul\n4.div\n");
+        while (true) {
+            choice = getIntInput(sc, "Enter an operator choice: ");
+            if (choice >= 1 && choice <= 4) {
+                break;
+            } else {
+                System.out.println("Invalid choice! Please select from 1 to 4.");
+            }
+        }
+        num1 = getIntInput(sc, "Enter number1: ");
+        while (true) {
+            num2 = getIntInput(sc, "Enter number2: ");
+            if (choice == 4 && num2 == 0) {
+                System.out.println("ERROR! Division by zero. Please enter a non-zero number.");
+            } else {
+                break;
+            }
+        }
+
+        // Perform operation
+        switch (choice) {
+            case 1:
+                System.out.println("Result: " + (num1 + num2));
+                break;
+            case 2:
+                System.out.println("Result: " + (num1 - num2));
+                break;
+            case 3:
+                System.out.println("Result: " + (num1 * num2));
+                break;
+            case 4:
+                System.out.println("Result: " + ((double) num1 / num2));
+                break;
+        }
+
+        sc.close();
+    }
+}
